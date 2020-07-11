@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# redirect all output to stderr
+{
+  INPUT_TREE="${1?<input> required}"
+  NPM_INSTALL_COMMAND="${HOLOLENS_NPM_INSTALL_COMMAND:-npm install --no-audit}"
+  NPM_INSTALL_ENV="${HOLOLENS_NPM_INSTALL_ENV:-production}"
+
+
+  # set up environment
+  echo "Exporting input tree to scratch directory: ${INPUT_TREE}"
+  git holo lens export-tree "${INPUT_TREE}"
+
+  echo "Configuring environment: CI=true"
+  export CI="true"
+
+  echo "Configuring environment: NODE_ENV=${NPM_INSTALL_ENV}"
+  export NODE_ENV="${NPM_INSTALL_ENV}"
+
+
+  # execute npm install
+  echo
+  echo "Running: ${NPM_INSTALL_COMMAND}"
+  ${NPM_INSTALL_COMMAND}
+  install_status=$?
+
+  if [ $install_status -ne 0 ]; then
+    echo -e "\n${NPM_INSTALL_COMMAND} failed with exit status ${install_status}"
+    exit ${install_status}
+  fi
+
+
+  # add node_modules to output
+  git add "node_modules/"
+
+} 1>&2
+
+
+# output tree hash
+git write-tree
