@@ -3,7 +3,7 @@
 # redirect all output to stderr
 {
   INPUT_TREE="${1?<input> required}"
-  NPM_INSTALL_COMMAND="${HOLOLENS_NPM_INSTALL_COMMAND:-npm install --no-audit}"
+  NPM_INSTALL_COMMAND="${HOLOLENS_NPM_INSTALL_COMMAND:-npm ci}"
   NPM_INSTALL_ENV="${HOLOLENS_NPM_INSTALL_ENV:-production}"
 
 
