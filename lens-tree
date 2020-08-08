@@ -18,11 +18,6 @@
   export NODE_ENV="${NPM_INSTALL_ENV}"
 
 
-  # The `/usr/bin/env` path is hardcoded in npm scripts
-  if [[ ! -r /usr/bin/env ]]; then
-    hab pkg binlink --dest /usr/bin core/coreutils env
-  fi
-
   # execute npm install
   echo
   echo "Running: ${NPM_INSTALL_COMMAND}"
