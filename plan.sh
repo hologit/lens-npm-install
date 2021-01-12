@@ -1,12 +1,12 @@
 pkg_name="lens-npm-install"
 pkg_origin="holo"
-pkg_version="0.3.0"
+pkg_version="12"
 pkg_maintainer="Chris Alfano <chris@jarv.us>"
 pkg_license=("Apache-2.0")
 
 pkg_deps=(
   core/bash
-  core/node
+  jarvus/node12 # newer than core/node12
   jarvus/hologit
 )
 
