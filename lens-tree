@@ -31,7 +31,7 @@
 
 
   # add node_modules to output
-  git add "node_modules/"
+  git add -f "node_modules/"
 
 } 1>&2
 
