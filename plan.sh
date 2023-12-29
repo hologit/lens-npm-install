@@ -8,7 +8,7 @@ pkg_deps=(
   core/bash
   core/gcc
   core/make
-  jarvus/node14 # newer than core/node12
+  core/node14
   jarvus/hologit
 )
 
